@@ -12,6 +12,12 @@
 		public static function readAll ()
 		{
 			$tab_v = ModelVoiture :: selectAll ();     //appel au modèle pour gerer la BD
+			$v=FALSE;
+			if(isset($_COOKIE["immatriculation"])){
+				$v=unserialize ($_COOKIE["immatriculation"]);
+				setcookie ("immatriculation"," ",time()-1);
+
+			}
 			$object = 'voiture';
 			$view = 'list';
 			$pagetitle = 'Liste des voitures';
@@ -22,6 +28,7 @@
 		public static function read ( $immat )
 		{
 			$v = ModelVoiture ::select ( $immat );
+			setcookie ("immatriculation",serialize ($v),time()+3600);
 			$object = 'voiture';
 			$view = 'detail';
 			$pagetitle = 'Détail de la voiture';

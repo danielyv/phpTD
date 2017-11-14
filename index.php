@@ -6,7 +6,7 @@
 	 * Time: 10:07
 	 */
 	include __DIR__.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'File.php';
-
+	phpinfo ();
 	require File::build_path (array ('controller','routeur.php'));
 
 ?>

@@ -14,6 +14,10 @@
 		public static function readAll ()
 		{
 			$tab_v = ModelUser ::selectAll ();     //appel au modèle pour gerer la BD
+			$v=FALSE;
+			if(isset($_SESSION["login"])){
+				$v=$_SESSION["login"];
+			}
 			$object = 'utilisateur';
 			$view = 'list';
 			$pagetitle = 'Liste des utilisateurs';
@@ -24,6 +28,7 @@
 		public static function read ( $login )
 		{
 			$v = ModelUser ::select ( $login );
+			$_SESSION['login']=$v;
 			$object = 'utilisateur';
 			$view = 'detail';
 			$pagetitle = 'Détail de l\'utilisateur.';

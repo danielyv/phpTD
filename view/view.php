@@ -8,6 +8,7 @@
 		<header>
 			<nav>
 				<ul style="list-style-type : none;">
+					<li style="display : inline;padding : 0 0.5em;"><a href="index.php">Index</a></li>
 					<li style="display : inline;padding : 0 0.5em;">
 						<a href="index.php?controller=voiture&action=readAll"> Car home page</a>
 					</li>
@@ -16,7 +17,21 @@
 					</li>
 					<li style="display : inline;padding : 0 0.5em;">
 						<a href="index.php?action=readAll&controller=trajet">Journey home page</a>
+					</li style="display: inline
+					;
+						padding: 0 0.5em
+					;">
+					<li style="display : inline;padding : 0 0.5em;">
+						<a href="preference.html">Preference</a>
 					</li>
+					<?php
+						if ( isset( $_SESSION[ "login" ] ) ) {
+							echo "<li  style=\"display : inline;padding : 0 0.5em;\">
+						<a href=\"index.php?action=disconnect&controller=utilisateur\">Disconnect</a>
+					</li>";
+						}
+					?>
+
 				</ul>
 			</nav>
 		</header>
