@@ -9,8 +9,10 @@
 	if ( $v !== FALSE ) {
 
 		echo "<p>Nom:".$v->getNom()."<br> Prenom:".$v->getPrenom()."<br> Login:".$v->getLogin()."
-		<br>
-        <a href=index.php?controller=utilisateur&action=update&".ModelUser::getPrimary ()."=". rawurlencode ( $v -> getLogin () ).">Update</a> </p>";
+		<br>";
+		if(Session::is_user ($v->getLogin())){
+			echo "<a href=index.php?controller=utilisateur&action=update&".ModelUser::getPrimary ()."=". rawurlencode ( $v -> getLogin () ).">Update</a> </p>";
+		}
 	}
 	else{
 		require File::build_path (array ('view','utilisateur','error.php'));

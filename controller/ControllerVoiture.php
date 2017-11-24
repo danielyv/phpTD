@@ -28,7 +28,6 @@
 		public static function read ( $immat )
 		{
 			$v = ModelVoiture ::select ( $immat );
-			setcookie ("immatriculation",serialize ($v),time()+3600);
 			$object = 'voiture';
 			$view = 'detail';
 			$pagetitle = 'Détail de la voiture';

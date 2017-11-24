@@ -5,11 +5,11 @@
 	 * Date: 29/09/17
 	 * Time: 10:24
 	 */
+	session_start();
 
 	require_once File ::build_path ( explode ( '/' , 'controller/ControllerVoiture.php' ) );
 	require_once File ::build_path ( [ 'controller' , 'ControllerUtilisateur.php' ] );
 	require_once File ::build_path ( [ 'controller' , 'ControllerTrajet.php' ] );
-	session_start ();
 	// On recupère l'action passée dans l'URL
 	// À remplir, voir Exercice 5.2
 	// Appel de la méthode statique $action de ControllerVoiture
@@ -72,12 +72,17 @@
 						}
 						$controller_class ::updated ( $data );
 						break;
+					case "connect":
+						$controller_class::connect();
+						break;
+					case "connected":
+						$controller_class::connected($_GET["login"],$_GET["mdp"]);
+						break;
 					case "disconnect":
-
-						session_unset();
-						session_destroy();
-						setcookie(session_name(),'',time()-1);
-						ControllerUtilisateur ::readAll ();
+						$controller_class::disconnect();
+						break;
+					case "validate":
+						$controller_class::validate($_GET["login"],$_GET["nonce"]);
 						break;
 					default:
 						$controller_class ::err ();
@@ -91,10 +96,6 @@
 			ControllerVoiture ::err ();
 		}
 	} else {
-		if(isset($_COOKIE["preference"])){
-			('Controller' . ucfirst ( $_COOKIE["preference"] ))::readAll();
-		}else{
-			ControllerVoiture ::readAll ();
-		}
+		ControllerVoiture ::readAll ();
 	}
 ?>

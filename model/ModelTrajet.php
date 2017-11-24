@@ -100,7 +100,7 @@
 		/**
 		 * @return string
 		 */
-		public static function getPrimary () : string
+		public static function getPrimary ()
 		{
 			return self ::$primary;
 		}

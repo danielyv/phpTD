@@ -25,10 +25,11 @@
 						<a href="preference.html">Preference</a>
 					</li>
 					<?php
-						if ( isset( $_SESSION[ "login" ] ) ) {
-							echo "<li  style=\"display : inline;padding : 0 0.5em;\">
-						<a href=\"index.php?action=disconnect&controller=utilisateur\">Disconnect</a>
-					</li>";
+						if ( !isset( $_SESSION[ "login" ] ) ) {
+							echo "<li style=\"display : inline;padding : 0 0.5em;\"><a href=\"index.php?action=connect&controller=utilisateur\">Connect</a></li>";
+						}
+						else {
+							echo "<li style=\"display : inline;padding : 0 0.5em;\"><a href=\"index.php?action=disconnect&controller=utilisateur\">Disconnect</a></li>";
 						}
 					?>
 
